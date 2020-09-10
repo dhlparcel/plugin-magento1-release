@@ -1,0 +1,81 @@
+<script type="text/javascript">
+    //<![CDATA[
+    function testAuthentication() {
+        new Ajax.Request('<?php echo $this->getAjaxUrl() ?>', {
+            method:     'post',
+            parameters: {
+                'api_user': document.getElementById('carriers_dhlparcel_api_user').value,
+                'api_key' : document.getElementById('carriers_dhlparcel_api_key').value
+            },
+            onSuccess: function(data){
+                responseData = data.responseJSON;
+
+                // Check if credentials are valid
+                if (responseData.valid == true) {
+                    // Valid
+
+                    if (responseData.account_ids !== undefined) {
+                        // Change Text input to a select input
+                        var textField = document.getElementById('carriers_dhlparcel_api_account_id');
+                        oldValue = textField.value;
+
+                        // Get possible parent TD's
+                        var parentTds = document.getElementById('row_carriers_dhlparcel_api_account_id').getElementsByTagName('td');
+
+                        // Search for the td.value
+                        for (var i = 0; i < parentTds.length; i++) {
+                            if (parentTds[i].className == 'value') {
+                                var parent = parentTds[i];
+                                break;
+                            }
+                        }
+
+                        // Remove Textfield from parent
+                        parent.removeChild(textField);
+
+                        // Building a new select
+                        var element = document.createElement('select');
+                        element.setAttribute('name', 'groups[dhlparcel][fields][api_account_id][value]');
+                        element.setAttribute('id', 'carriers_dhlparcel_api_account_id');
+
+                        // Append Options
+                        for (var i = 0; i < responseData.account_ids.length; i++) {
+                            var option = document.createElement('option');
+                            option.value = responseData.account_ids[i];
+                            option.text = responseData.account_ids[i];
+                            if (responseData.account_ids[i] == oldValue) {
+                                option.setAttribute('selected', 'selected');
+                            }
+
+                            element.appendChild(option);
+                        }
+
+                        // Append select to parent TD
+                        parent.appendChild(element);
+
+                        // Add success class to button
+                        document.getElementById('dhlparcel_testauthentication').classList.remove('fail');
+                        document.getElementById('dhlparcel_testauthentication').classList.add('success');
+                    }
+                } else {
+                    // Error - add class to button
+                    document.getElementById('dhlparcel_testauthentication').classList.remove('success');
+                    document.getElementById('dhlparcel_testauthentication').classList.add('fail');
+
+                    // Reset fields
+                    document.getElementById('carriers_dhlparcel_api_account_id').value = '';
+                }
+
+                if (responseData.button_text !== undefined) {
+                    // Change button text
+                    document.getElementById('dhlparcel_testauthentication').getElementsByTagName('span')[1].innerText = responseData.button_text;
+                }
+
+                return true;
+            }
+        });
+    }
+    //]]>
+</script>
+
+<?php echo $this->getButtonHtml() ?>

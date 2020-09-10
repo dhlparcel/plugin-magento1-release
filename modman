@@ -1,0 +1,23 @@
+app/code/community/DHLParcel/Shipping app/code/community/DHLParcel/Shipping
+
+app/design/adminhtml/default/default/layout/dhlparcel app/design/adminhtml/default/default/layout/dhlparcel
+app/design/adminhtml/default/default/template/dhlparcel app/design/adminhtml/default/default/template/dhlparcel
+
+app/design/frontend/base/default/layout/dhlparcel_shipping.xml app/design/frontend/base/default/layout/dhlparcel_shipping.xml
+app/design/frontend/base/default/template/dhlparcel_shipping app/design/frontend/base/default/template/dhlparcel_shipping
+app/design/frontend/base/default/template/dhlparcel app/design/frontend/base/default/template/dhlparcel
+
+app/etc/modules/DHLParcel_Shipping.xml app/etc/modules/DHLParcel_Shipping.xml
+
+app/locale/en_US/DHLParcel_Shipping.csv app/locale/en_US/DHLParcel_Shipping.csv
+app/locale/nl_NL/DHLParcel_Shipping.csv app/locale/nl_NL/DHLParcel_Shipping.csv
+
+js/dhlparcel/shipping js/dhlparcel/shipping
+
+skin/adminhtml/default/default/css/dhlparcel_shipping skin/adminhtml/default/default/css/dhlparcel_shipping
+skin/adminhtml/default/default/js/dhlparcel_shipping skin/adminhtml/default/default/js/dhlparcel_shipping
+skin/adminhtml/default/default/js/dhlparcel/shipping skin/adminhtml/default/default/js/dhlparcel/shipping
+
+skin/frontend/base/default/js/dhlparcel/shipping skin/frontend/base/default/js/dhlparcel/shipping
+
+var/connect/DHLParcel_Shipping.xml var/connect/DHLParcel_Shipping.xml

@@ -1,0 +1,24 @@
+<?php
+/** @var DHLParcel_Shipping_Helper_Data $helper */
+$helper = $this->helper;
+
+?>
+<tr>
+    <td>
+        <?= $helper->__('You can find your <i>Api Keys</i> in your <a href="%s" title="My DHL Parcel dashboard" target="_blank">My DHL Parcel dashboard</a>.', $helper->__('https://my.dhlparcel.nl/business/#/settings?section=api-keys')); ?>
+        <br/>
+        <br/>
+        <b><?= $helper->__('Version'); ?></b><br/>
+        <?= $helper->__('This is version <b>&quot;v%s&quot;</b> of the DHL Parcel for Magento plugin.', $this->escapeHtml($helper->getModuleVersion())); ?>
+        <br/>
+        <br/>
+        <?= $helper->getModuleStatus(); ?>
+        <br/>
+        <?= $helper->__('Note: version information is accurate only when the cache is cleared.', 'dhlparcel'); ?>
+        <br>
+        <br/>
+        <?= $helper->__('If you have any questions or suggestions, please contact <a href="https://www.dhlparcel.nl/en/business/plug-play" title="Support DHL Parcel" target="_blank">DHL Parcel Support</a>'); ?>
+        <br/>
+        <br/>
+    </td>
+</tr>

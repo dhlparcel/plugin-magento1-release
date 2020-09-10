@@ -1,0 +1,14 @@
+<div class="dhlparcel-modal" <?php $modalId = $this->getData('modalId') ? 'id="'.$this->htmlEscape($modalId).'"' : '';?>>
+
+    <div class="dhlparcel-modal-content">
+        <div class="dhlparcel-modal-close-wrapper">
+            <?php if ($title = $this->getData('title')) : ?>
+            <span class="dhlparcel-modal-title"><?php echo $this->htmlEscape($title); ?></span>
+            <?php endif ?>
+            <span class="dhlparcel-modal-close">&times;</span>
+        </div>
+        <?php echo $this->getChildHtml('wrapper') ?>
+        <div class="clear"></div>
+    </div>
+
+</div>

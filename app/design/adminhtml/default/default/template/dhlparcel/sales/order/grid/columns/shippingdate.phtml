@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var $this DHLParcel_Shipping_Block_Widget_Grid_Column_Renderer_Shippingdate
+ */
+$this;
+?>
+<?php if ($this->isToday()) { ?>
+    <span class="grid-severity-notice"><span><?php echo __('Today'); ?></span></span>
+<?php } elseif ($this->isTommorrow()) { ?>
+    <span class="grid-severity-minor"><span><?php echo __('Tomorrow'); ?></span></span>
+<?php } elseif (!$this->hasShippingDate()) { ?>
+    <span class="grid-severity-notice"><span><?php echo __('A.S.A.P.'); ?></span></span>
+<?php } elseif ($this->isToolate()) { ?>
+    <span class="grid-severity-critical"><span><?php echo $this->getFormattedDate(); ?></span></span>
+<?php } else { ?>
+    <span class="grid-severity-minor"><span><?php echo $this->getFormattedDate(); ?></span></span>
+<?php } ?>

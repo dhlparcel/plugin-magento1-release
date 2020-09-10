@@ -1,0 +1,218 @@
+<_>
+   <form_key>rPAiuuwPbbAgaEbb</form_key>
+   <name>DHLParcel_Shipping</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+   </version_ids>
+   <summary>DHL Parcel offers a convenient extension for Magento 1. 
+With this you offer delivery options directly in your online store which in turn increases service levels for your customers. 
+This extension also creates the option to process orders, create and print DHL labels directly from your online store backend environment.
+
+Note: this extension is currently only usable in the Benelux and Switzerland. 
+</summary>
+   <description>DHL Parcel offers a convenient extension for Magento 1. With this you offer delivery options directly in your online store which in turn increases service levels for your customers. This extension also creates the option to process orders, create and print DHL labels directly from your online store backend environment. This makes shipping parcels a lot easier.
+Note that this extension currently can only be used in the Benelux and Switzerland. 
+
+Features
+Print DHL labels for domestic and international shipping with DHL Parcel. All parcel types are supported:
+- Mailbox parcel
+- Small parcel (0-20 kg)
+- Medium parcel (20-31 kg)
+- Large parcel(31-50 kg)
+
+Create Auto tracking codes automatically send tracking information to recipients
+
+Offer a variety of delivery services.
+Services for consumer recipients:	Services for business shipments:
+- Home delivery			- Home delivery
+- DHL ServicePoint delivery 		- Delivery at a construction site
+- Specific delivery time slots		- Saturday delivery
+- Same day delivery			- Signature on delivery
+- Evening delivery			- Extra assured shipments
+- No delivery at neighbors		- Extra fast service
+- Signature on delivery			- Return label
+- Extra assured shipments		- Hide shipper name
+- Return label&lt;/description&gt;
+    &lt;notes&gt;**Features**
+
+**Print DHL labels** for domestic and international shipping with DHL Parcel. All parcel types are supported:
+- Mailbox parcel
+- Small parcel (0-20 kg)
+- Medium parcel (20-31 kg)
+- Large parcel (31-50 kg)
+
+**Create Auto tracking codes** automatically send tracking information to recipients
+
+**Offer a variety of delivery services.**
+Services for consumer recipients:        
+- Home delivery                        
+- DHL ServicePoint delivery                 
+- Specific delivery time slots                
+- Same day delivery                        
+- Evening delivery                        
+- No delivery at neighbors                
+- Signature on delivery                        
+- Extra assured shipments                
+- Return label
+
+Services for business shipments:
+- Home delivery
+- Delivery at a construction site
+- Saturday delivery
+- Signature on delivery
+- Extra assured shipments
+- Extra fast service
+- Return label
+- Hide shipper name</description>
+   <license>OSL3</license>
+   <license_uri/>
+   <version>1.0.9</version>
+   <stability>stable</stability>
+   <notes>DHL Parcel for Magento 1</notes>
+   <authors>
+      <name>
+         <name>DHL</name>
+      </name>
+      <user>
+         <user>dhl</user>
+      </user>
+      <email>
+         <email>plugins@dhl.com</email>
+      </email>
+   </authors>
+   <depends_php_min>5.2.0</depends_php_min>
+   <depends_php_max>7.9.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+            <name>Mage_Checkout</name>
+            <name>Mage_Shipping</name>
+         </name>
+         <channel>
+            <channel/>
+            <channel>community</channel>
+            <channel>community</channel>
+         </channel>
+         <min>
+            <min/>
+            <min>1.6.0.0</min>
+            <min>1.6.0.0</min>
+         </min>
+         <max>
+            <max/>
+            <max>1.7</max>
+            <max>1.7</max>
+         </max>
+         <files>
+            <files>     </files>
+            <files>     </files>
+            <files>     </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+         </name>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magelocal</target>
+         <target>mageetc</target>
+         <target>magecommunity</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>mage</target>
+         <target>magelib</target>
+         <target>mageskin</target>
+         <target>mageskin</target>
+         <target>mageskin</target>
+         <target>mageskin</target>
+      </target>
+      <path>
+         <path/>
+         <path>modules/DHLParcel_Shipping.xml</path>
+         <path>DHLParcel/Shipping</path>
+         <path>adminhtml/default/default/layout/dhlparcel</path>
+         <path>adminhtml/default/default/template/dhlparcel</path>
+         <path>frontend/base/default/layout/dhlparcel_shipping.xml</path>
+         <path>frontend/base/default/template/dhlparcel_shipping</path>
+         <path>frontend/base/default/template/dhlparcel_shipping</path>
+         <path>en_US/DHLParcel_Shipping.csv</path>
+         <path>en_US/DHLParcel_Shipping.csv</path>
+         <path>js/dhlparcel/shipping</path>
+         <path>DHLParcel</path>
+         <path>adminhtml/default/default/css/dhlparcel_shipping</path>
+         <path>adminhtml/default/default/js/dhlparcel_shipping</path>
+         <path>adminhtml/default/default/js/dhlparcel/shipping</path>
+         <path>frontend/base/default/js/dhlparcel/shipping</path>
+      </path>
+      <type>
+         <type>file</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+</_>

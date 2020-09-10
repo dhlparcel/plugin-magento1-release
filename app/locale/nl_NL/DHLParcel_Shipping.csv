@@ -1,0 +1,117 @@
+Country,Land
+Postal code,Postcode
+Weight (and higher),Gewicht (en hoger)
+Amount (and higher),Bedrag (en hoger)
+Quantity (and higher),Aantal (en hoger)
+price,Prijs
+API Credentials are invalid,API gegevens zijn niet geldig
+API Credentials are valid,API gegevens zijn geldig
+Invalid Matrix Rates file format,Ongeldig bestand voor variabele tarieven
+An error occurred while importing the rates,Er ging iets mis bij het importeren van de tarieven
+An error occurred while importing the matrix rates,Er ging iets mis bij het importeren van de variabele tarieven
+File has not been imported. See the following list of errors: %s,Bestand is niet geïmporteerd. Bekijk de foutmelding(en): %s
+Invalid row #%s,Ongeldige rij #%s
+"Duplicate row #%s (country ""%s"", zip ""%s"", weight ""%s"", subtotal ""%s"" and quantity ""%s"").","Dubbele rij #%s (land ""%s"", postcode ""%s"", gewicht ""%s"", bedrag ""%s"" and aantal ""%s"")."
+Customer packaging,Verpakking klant
+BULKY,Bulky
+PALLET,Pallet
+LARGE,Groot
+MEDIUM,Medium
+SMALL,Klein
+DHLParcel,DHL Parcel
+Homedelivery,Thuisbezorging
+Servicepoint,DHL Servicepoint
+Same-day delivery,DHL Vandaag
+No neighbour delivery,Niet bij buren bezorgen
+Evening delivery,Avondbezorging
+Expresses (delivery before 11:00),Expresser (bezorging voor 11:00)
+Delivery to construction site ,Bouwplaatsbezorging 
+Saturday delivery,Zaterdagbezorging
+"Undisclosed sender","Undisclosed sender"
+"Shipment insurance","Shipment insurance"
+"Age check of recipient by courier","Age check of recipient by courier"
+Flat,Vast
+Matrix,Variabel
+Test API Credentials,Test API gegevens
+Export CSV,Exporteer CSV
+"You can find your <i>Api Keys</i> in your <a href=""%s"" title=""My DHL Parcel dashboard"" target=""_blank"">My DHL Parcel dashboard</a>.","U vindt uw <i>Api sleutel</i> in uw <a href=""%s"" title=""My DHL Parcel omgeving"" target=""_blank"">My DHL Parcel omgeving</a>."
+https://my.dhlparcel.nl/business/#/settings?section=api-keys,https://my.dhlparcel.nl/business/#/settings?section=api-keys
+Version,Versie
+This is version <b>&quot;v%s&quot;</b> of DHL Parcel&lsquo;s Magento module.,Dit is versie <b>&quot;v%s&quot;</b> van DHL Parcel&lsquo;s Magento plug-in.
+The latest version is <b>&quot;v%s&quot;</b>.,De laatste versie is <b>&quot;v%s&quot;</b>.
+Note: version information is accurate only when the cache is cleared.,Let op: de informatie over versies klopt alleen wanneer de cache van uw browser is geleegd.
+"If you have any questions or suggestions, please contact <a href=""https://www.dhlparcel.nl/en/business/plug-play"" title=""Support DHL Parcel"" target=""_blank"">DHL Parcel Support</a>","Heeft u vragen of opmerkingen, neem dan contact op met <a href=""https://www.dhlparcel.nl/nl/zakelijk/plug-play"" title=""support"" target=""_blank"">support</a>"
+DHL ServicePoint details,DHL ServicePoint details
+Please select a DHL ServicePoint,Selecteer een DHL ServicePoint
+Shipment options,Verzendopties
+Packages size and weight,Gewicht en grootte van het pakket
+"Sorry, no quotes are available for this order at this time.",Op dit moment zijn er helaas geen prijsopgaven beschikbaar voor deze bestelling.
+Incl. tax,Incl. belasting
+"%s (%d-%d kg, %dx%dx%d cm) ","%s (%d-%d kg, %dx%dx%d cm) "
+Version incompatible,Deze versie is niet geschikt
+Your Magento version is incompatible with this module,Uw versie van Magento is niet geschikt voor deze plug-in.
+Minimal Magento version requirement: ,Minimale Magento versie: 
+Current version: ,Huidige versie: 
+Status,Status
+Module status: Disabled!,Plug-in status: uitgeschakeld!
+Module status: Outdated!,Plug-in status: verouderd!
+Module status: OK!,Plug-in status: OK!
+Delivery to the address of the recipient,Bezorging op het adres van de ontvanger
+Delivery to the specified DHL Parcelshop or DHL Parcelstation,Bezorging op gekozen DHL ServicePoint of Locker
+E-mail to receiver,E-mail naar ontvanger
+Evening delivery,Avondbezorging
+Extra assurance,Extra Zeker
+Mailbox delivery,Brievenbuspakje
+No neighbour delivery,Niet bij buren bezorgen
+Print extra label for return shipment,Print extra label voor retourzending
+Reference,Referentie
+Same-day delivery,DHL Vandaag
+Signature on delivery,Handtekening bij ontvangst
+Today,Vandaag
+Tomorrow,Morgen
+A.S.A.P.,Zo snel mogelijk
+Shipping Date,Verzenddatum
+Press 'Submit Shipment' to generate your labels,Klik op 'Zending Aanmaken' om de labels te maken
+Private,Consument
+Business,Zakelijk
+Order,Bestelling
+"Additional transport insurance. If the value of the goods exceeds € 50.000, please contact our Customer Service prior to shipping.","Extra verzekering voor uw waardevolle zending. Wanneer de goederenwaarde meer dan €50.000 bedraagt, vraag dan eerst toestemming via Customer Service."
+Other ServicePoint,Ander DHL punt
+Select ServicePoint,Selecteer DHL punt
+Distance,Afstand
+Using a reference causes the volume discount for multi colli shipments to be applied correctly.,Vul een referentie in bij multicolli zendingen voor een juiste verwerking van de staffelkorting.
+"Can't create a mailbox-shipment for order #%s, customer wants a ServicePoint delivery",Bij bezorging op een DHL ServicePoint is het niet mogelijk om voor bestelling #%s een label voor een brievenbuspakket aan te maken.
+Error for order %s: %s,Foutmelding voor bestelling %s: %s
+Can't create a shipment for orderId #%s,Het is niet mogelijk om een label te maken voor bestelling #%s
+%d shipment(s) are created with success,%d label(s) zijn succesvol aangemaakt
+No label available for shipment #%s,Geen label beschikbaar voor bestelling #%s
+There was an error creating your label: %s,Er is een fout opgetreden bij het aanmaken van uw label: %s
+There was an error creating your label. Please check your log-file for more information.,Er is een fout opgetreden bij het aanmaken van uw label. Controleer uw log bestand voor meer informatie.
+Could not retrieve street and housenumber from the recipient address.,Straat en huisnummer van de ontvanger niet beschikbaar.
+Could not retrieve street and housenumber from the shipper address. Please check your settings in System -> Configuration -> Sales -> Shipping Settings -> Origin: Street Address not set (correctly),Straat en huisnummer van de verzender niet beschikbaar. Controleer uw instellingen bij Systeem -> Configuratie -> Verkoop -> Verzendinstellingen -> Afkomst: het adres is niet goed ingesteld
+"Please check your settings in System -> Configuration -> Sales -> Shipping Methods -> ""DHLParcel - Return Labels"": Address not set (correctly)","Controleer uw instellingen bij Systeem -> Configuratie -> Verkoop -> Verzendmethoden -> ""DHLParcel - Retour labels"": het adres is niet goed ingesteld"
+Error occurred while trying to split address '%s',Er is een fout ontstaan bij het splitsen van de straat en het huisnummer '%s'
+"Please check your settings in System -> Configuration -> Sales -> Shipping Methods -> ""DHLParcel - Undisclosed sender (B2B)"": Address not set (correctly)","Controleer uw instellingen bij Systeem -> Configuratie -> Verkoop -> Verzendmethoden -> ""DHLParcel - Verberg verzender (B2B)"": het adres is niet goed ingesteld"
+"DHL Servicestation Address","DHL Servicestation Address"
+"Can't create a mailbox-shipment for order #%s, customer wants a ServicePoint delivery","Can't create a mailbox-shipment for order #%s, customer wants a ServicePoint delivery"
+"Show x days in forward (when available)","Show x days in forward (when available)"
+"Monday","Maandag"
+"Tuesday","Dinsdag"
+"Wednesday","Woensdag"
+"Thursday","Donderdag"
+"Friday","Vrijdag"
+"Saturday","Zaterdag"
+"Sunday","Zondag"
+"January","Januari"
+"February","Februari"
+"March","Maart"
+"April","April"
+"May","Mei"
+"June","Juni"
+"July","Juli"
+"August","Augustus"
+"September","September"
+"October","Oktober"
+"November","November"
+"December","December"
+"Add more packages","Voeg nog een label toe"

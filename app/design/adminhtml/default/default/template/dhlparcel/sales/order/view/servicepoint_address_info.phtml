@@ -1,0 +1,57 @@
+<?php
+/**
+ * Dhl Shipping
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to
+ * newer versions in the future.
+ *
+ *  PHP version 5.6+
+ *
+ * @category  Dhlparcel
+ * @author    Shin Ho <plugins@dhl.com>
+ * @author    Rudger Gravenstein <plugins@dhl.com>
+ * @author    Ron Oerlemans <plugins@dhl.com>
+ * @copyright 2019 DHLParcel
+ * @link      https://www.dhlparcel.nl/
+ */
+?>
+<?php
+/** @var DHLParcel_Shipping_Block_Adminhtml_Sales_Order_View_Servicepoint $this ; */
+$this;
+
+/** @var DHLParcel_Shipping_Helper_Labels $helper */
+$helper = Mage::helper('dhlparcel_shipping/labels');
+$servicePoint = $this->getServicePoint();
+?>
+<!-- ServicePoint Info -->
+<div class="dhlparcel-shipping-servicepoint-box" id="dhlparcel_servicepoint_address">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4><?php echo $helper->__('DHL ServicePoint Address'); ?></h4>
+        </div>
+        <fieldset>
+            <address>
+                <?php if ($servicePoint !== false) : ?>
+                    <?php echo $helper->formatServicePointToHtml($servicePoint); ?>
+                <?php else : ?>
+                    <?php echo $helper->__('Failed to retrieve ServicePoint information, this may be due to the ServicePoint being closed down.') ?>
+                <?php endif; ?>
+            </address>
+        </fieldset>
+    </div>
+</div>
+<!-- End ServicePoint Info -->
+<script type="text/javascript">
+    var billingAddress = document.querySelectorAll('#sales_order_view_tabs_order_info_content .box-left')[1];
+    billingAddress.classList.add('dhlparcel-shipping-invoice-box');
+
+    var shippingAddress = document.querySelectorAll('#sales_order_view_tabs_order_info_content .box-right')[1];
+    shippingAddress.classList.add('dhlparcel-shipping-shipping-box');
+    shippingAddress.classList.remove('box-right');
+
+    var servicePointAddress = document.querySelector('#dhlparcel_servicepoint_address');
+
+    shippingAddress.parentNode.insertBefore(servicePointAddress, shippingAddress.nextSibling);
+</script>

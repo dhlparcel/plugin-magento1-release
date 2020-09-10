@@ -1,0 +1,138 @@
+<?php
+// phpcs:ignoreFile
+/** @var DHLParcel_Shipping_Block_Adminhtml_Sales_Order_Shipment_Create_Dhlshipping $this */ ?>
+<div id="dhl_shipping_options">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" id="logo" viewBox="0 0 150 22" width="150" height="22"><title>logo</title><g id="Symbols" fill="none" fill-rule="evenodd"><g id="Template-element-/-Footer" transform="translate(-145 -434)" fill="#D40511" fill-rule="nonzero"><g id="dhl-logo-copy-3" transform="translate(145 434)"><g id="Group" transform="translate(0 14)"><g id="Shape"><path d="M0 2.913h20.285l-1.108 1.509H0zM0 .116h22.346l-1.11 1.507H0zM0 5.714h18.226L17.123 7.21H0z"/></g><g id="Shape"><path d="M23 4.422H2.795l1.108-1.508H23zM23 7.211L.74 7.214l1.103-1.5H23zM5.962.116H23v1.507l-18.148.001z" transform="translate(127)"/></g></g><g id="Group" transform="translate(19 8)"><path d="M.647 13.211L10.273.133H22.22c1.32 0 1.303.501.657 1.376-.655.888-1.77 2.413-2.437 3.315-.34.46-.952 1.292 1.078 1.292H37.52c-1.332 1.824-5.648 7.095-13.4 7.095H.648zM55.776 6.115l-5.22 7.096h-13.77l5.221-7.095zM75.689 6.116l-5.223 7.095H56.7s5.218-7.095 5.222-7.095h13.766zM80.165 6.116c.001 0-1.005 1.376-1.494 2.036-1.729 2.336-.201 5.059 5.441 5.059h22.108l5.221-7.095H80.165z" id="Shape"/></g><g id="Group" transform="translate(21)"><path d="M5.38 0L.585 6.511h26.12c1.32 0 1.303.502.658 1.376-.656.887-1.753 2.431-2.42 3.332-.338.457-.951 1.29 1.079 1.29h10.68s1.722-2.342 3.165-4.3C41.83 5.545 40.038 0 33.019 0H5.38zM74.87 12.51H41.19L50.4 0h13.767l-5.28 7.173h6.144L70.313 0h13.764zM103.14 0l-9.207 12.51H79.347S88.557 0 88.563 0h14.577z" id="Shape"/></g></g></g></g></svg>
+        <strong>DHLParcel</strong>
+    </h3>
+    <input type="hidden" name="dhl_to_country" value="<?php echo $this->getShipment()
+        ->getShippingAddress()
+        ->getCountryId(); ?>" />
+    <div class="dhlparcel-shipping-content-box">
+
+        <div class="dhlparcel-shipping-row">
+            <div class="dhlparcel-shipping-business-switch-container">
+                <input
+                        type="checkbox"
+                        id="dhlparcel-shipping-business-switch"
+                        name="dhlparcel_shipping_to_business"
+                    <?php if ($this->getBusinessSelection()) : ?>
+                        checked="checked"
+                    <?php endif ?>
+                />
+                <label id="dhlparcel-shipping-business-switch-private" for="dhlparcel-shipping-business-switch"><?php echo __('Private') ?></label>
+                <label id="dhlparcel-shipping-business-switch-business" for="dhlparcel-shipping-business-switch"><?php echo __('Business') ?></label>
+            </div>
+        </div>
+
+        <div class="dhlparcel-shipping-row">
+            <div class="dhlparcel-shipping-left">
+                <ul class="dhlparcel-shipping-delivery-options">
+                <?php foreach ($this->getDeliveryOptions() as $_option) : ?>
+                    <li <?php if ($_option['is_selected']) : ?>class="dhl-delivery-option-selected"<?php endif; ?>>
+                        <input id="dhlparcel-delivery-option-cb-<?php echo $_option['key']; ?>"
+                               data-delivery-method="<?php echo $_option['key']; ?>"
+                               type="radio"
+                               value="<?php echo $_option['key']; ?>"
+                               <?php if ($_option['is_selected']) : ?>checked="checked"<?php endif; ?>
+                               name="dhlparcel_shipping_delivery_method" />
+
+                        <label for="dhlparcel-delivery-option-cb-<?php echo $_option['key']; ?>" class="dhl-select-delivery-method">
+                            <?php echo __($_option['description']); ?>
+                        </label>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="dhlparcel-shipping-right">
+                <?php foreach ($this->getDeliveryOptions() as $_option) : ?>
+                    <div id="dhl_shipment_options_<?php echo $_option['key']; ?>" class="dhl_shipment_options_wrapper <?php if ($_option['is_selected']) : ?>dhl_shipment_options_wrapper_selected<?php endif; ?>">
+
+                        <?php if ($_option['key'] == 'PS') : ?>
+                            <?php $servicePoint = $this->getSelectedServicePoint(); ?>
+                            <p><strong><?php echo __('DHL ServicePoint details'); ?></strong></p>
+                            <div class="dhlparcel-shipping-ps-details">
+                                <address class="dhlparcel-shipping-ps-details-address">
+                                    <?php if ($servicePoint !== false) : ?>
+                                        <?php echo $this->getDhlHelper()->formatServicePointToHtml($servicePoint); ?>
+                                    <?php else : ?>
+                                        <i><?php echo __('Please select a DHL ServicePoint'); ?></i>
+                                    <?php endif; ?>
+                                </address>
+                                <input
+                                        type="hidden"
+                                        class="dhlparcel-servicepoint-selected-id <?php if ($_option['is_selected']) : ?>required-entry<?php endif; ?>"
+                                        name="dhlparcel_shipping_options[<?php echo $_option['key']; ?>][PS][VALUE]"
+                                        value="<?php echo $servicePoint !== false ? $this->getShipment()->getOrder()->getData('dhlparcel_servicepoint') : ''; ?>"
+                                />
+                                <button type="button" name="" class="dhlparcel-change-parcelshop-button scalable edit submit-button"><span><span>Change Parcelshop</span></span></button>
+                            </div>
+                        <?php endif; ?>
+
+                        <p><strong><?php echo __('Shipment options'); ?></strong></p>
+
+                        <?php foreach ($this->getShipmentOptions($_option) as $shipmentOption) : ?>
+                            <p>
+
+                                <input data-exclusion="<?php echo implode(',', $shipmentOption['exclusions']); ?>"
+                                       name="dhlparcel_shipping_options[<?php echo $_option['key']; ?>][<?php echo $shipmentOption['key']; ?>]<?php if( $shipmentOption['inputType'] != 'checkbox') : ?>[KEY]<?php endif; ?>"
+                                       value="<?php echo $shipmentOption['key']; ?>"
+                                       type="checkbox"
+                                       id="dhl_shipping_option_<?php echo $_option['key']; ?>_<?php echo $shipmentOption['key']; ?>"
+                                       <?php if ($shipmentOption['is_selected']) : ?>checked="checked"<?php endif; ?>
+                                       class="checkbox dhlparcel-shippingoption dhl_shipping_option_<?php echo $shipmentOption['key']; ?>"
+                                />
+
+                                <label class="normal" title="" for="dhl_shipping_option_<?php echo $_option['key']; ?>_<?php echo $shipmentOption['key']; ?>">
+                                    <?php echo $this->__($shipmentOption['description']); ?>
+                                </label>
+
+                                <?php if (isset($shipmentOption['descriptionText']) && $shipmentOption['descriptionText'] !== null) : ?>
+                                    <span class="dhlparcel-shipping-show-on-active">
+                                        <?php echo $shipmentOption['descriptionText']; ?>
+                                    </span>
+                                <?php endif; ?>
+
+                                <?php if ($shipmentOption['inputType'] != 'checkbox') : ?>
+                                    <input type="<?php echo $shipmentOption['inputType']; ?>"
+                                           name="dhlparcel_shipping_options[<?php echo $_option['key']; ?>][<?php echo $shipmentOption['key']; ?>][VALUE]"
+                                           placeholder="<?php echo $shipmentOption['placeholder']; ?>"
+                                            <?php if (isset($shipmentOption['value'])) : ?>
+                                            value="<?php echo $shipmentOption['value']; ?>"
+                                            <?php endif; ?>
+                                           class="dhlparcel-shipping-show-on-active"
+                                           style="margin-left: 30px"/>
+                                    <?php if (isset($shipmentOption['postinput']) && $shipmentOption['postinput'] !== null) : ?>
+                                        <strong class="dhlparcel-shipping-show-on-active"><?php echo $shipmentOption['postinput']; ?></strong>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="dhlparcel-shipping-row dhlparcel-shipping-package-row">
+            <div class="dhlparcel-shipping-left dhlparcel-simple-col">
+                <label class="normal"><?php echo $this->__('Packages size and weight'); ?> <?php echo $this->__('Package'); ?> #<strong class="package_number">1</strong></label>
+            </div>
+            <div class="dhlparcel-shipping-right dhlparcel-simple-col">
+                <select name="dhl_shipping_parcel_type[]" class="dhl_shipping_parcel_type">
+                    <?php foreach ($this->getParcelTypes() as $key => $parcelType) : ?>
+                        <option value="<?php echo $key; ?>"><?php echo $parcelType; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button class="scalable add dhl_shipping_add_package" type="button"><span><span><?php echo $this->__('Add more packages') ; ?></span></span></button>
+            </div>
+        </div>
+        <p><br /><?php echo __("Press 'Submit Shipment' to generate your labels") ?></p>
+    </div>
+</div>
+
+<script>
+    var DHLShipping_ParcelTypesUrl = '<?php echo $this->getParcelTypesUrl() ?>';
+    var DHLShipping_ShippingFormUrl = '<?php echo $this->getShippingFormUrl() ?>';
+    var DHLShipping_OrderId = '<?php echo $this->getOrderId() ?>';
+    var DHLShipping_CreateDHLLabel = <?php echo intval($this->isDHLOrder()); ?>;
+</script>

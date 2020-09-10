@@ -1,0 +1,97 @@
+<?php
+// phpcs:ignoreFile
+?>
+<ul class="dhlparcel-shipping-delivery-options-wrapper dhlparcel-shipping-delivery-options-wrapper-<?php echo $this->getRate()->getCode(); ?>">
+    <?php $showTimeWindows = ($this->timeWindowsEnabled($this->getRate()) === true && $this->getRate()->getCode() == 'dhlparcel_DOOR'); ?>
+    <?php if ($showTimeWindows) { ?>
+        <li style="padding-left: 38px;">
+            <select data-exclusion=""
+                    id="s_method_<?php echo $this->getRate()->getCode() ?>_option_time_window"
+                    name="dhlparcel_shipping_options[<?php echo $this->getRate()->getCode() ?>][time_window]"
+                    value="time_window"
+                    type="checkbox"
+                    class="checkbox dhlparcel-shippingoption dhlparcel-time-window-<?php echo $this->getRate()->getCode() ?>"
+            >
+                <?php foreach ($this->getTimeWindows($this->getRate()) as $timeWindow) { ?>
+                    <option value="<?php echo $timeWindow['value']; ?>" <?php if ($timeWindow['selected'] === true) : ?>selected="selected"<?php endif; ?>>
+                        <?php echo $timeWindow['label']; ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </li>
+    <?php } ?>
+    <?php foreach ($this->getCheckoutShipmentOptions($this->getRate()) as $option) { ?>
+        <?php if ($showTimeWindows && !empty($option['skip_with_time_widows']) && $option['skip_with_time_widows'] === true) : continue; endif; ?>
+        <?php if (!array_key_exists('is_for_consumer', $option) || $option['is_for_consumer'] !== true) : continue; endif; ?>
+        <?php if ($option['is_available'] != 1) { continue; } ?>
+
+        <li style="padding-left: 38px;">
+            <input data-exclusion="<?php echo implode(',', $option['exclusions']); ?>"
+                   id="s_method_<?php echo $this->getRate()->getCode() ?>_option_<?php echo $option['key']; ?>"
+                   name="dhlparcel_shipping_options[<?php echo $this->getRate()->getCode() ?>][]"
+                   value="<?php echo $option['key']; ?>"
+                   type="checkbox"
+                   class="checkbox dhlparcel-shippingoption dhlparcel-shippingoption-<?php echo $this->getRate()->getCode() ?>"
+            />
+            <label for="s_method_<?php echo $this->getRate()->getCode() ?>_option_<?php echo $option['key']; ?>">
+                <?php echo __($option['customer_title']); ?>
+                <small>+ <?php echo Mage::helper('core')->currency($option['price'], true, false); ?></small>
+            </label>
+        </li>
+    <?php } ?>
+</ul>
+
+<script type="application/javascript">
+    jQuery('.dhlparcel-shippingoption-<?php echo $this->getRate()->getCode() ?>').change(function () {
+        handleDhlShippingExclusions();
+    });
+
+    /**
+     * Handle shipmentoptions that needs to be
+     * disabled when choosing a shipment option
+     * for the checkboxes
+     *
+     *
+     */
+    function handleDhlShippingExclusions() {
+        var totalExclusions = [];
+
+        jQuery('.dhlparcel-shippingoption-<?php echo $this->getRate()->getCode() ?>:checked').each(function () {
+            var exlusions = jQuery(this).data('exclusion').split(',');
+
+            jQuery.each( exlusions, function( index, value ) {
+                if(!totalExclusions. include(value)) {
+                    totalExclusions.push(value);
+                }
+            });
+        });
+
+        jQuery('.dhlparcel-shippingoption-<?php echo $this->getRate()->getCode() ?>:not(:checked)').each(function() {
+            if(!totalExclusions. include(jQuery(this).val())) {
+                enableDhlOption(jQuery('#s_method_<?php echo $this->getRate()->getCode() ?>_option_' + jQuery(this).val()));
+            }
+        });
+
+        jQuery.each(totalExclusions, function( index, value ) {
+           disableDhlOption(jQuery('#s_method_<?php echo $this->getRate()->getCode() ?>_option_' + value));
+        });
+    }
+
+    function enableDhlOption(option) {
+        option.attr('disabled', false).removeClass('dhlparcel-shippingoption-disabled');
+
+        return option;
+    }
+
+    function disableDhlOption(option) {
+        option.attr('disabled', 'disabled').attr('checked', false).addClass('dhlparcel-shippingoption-disabled');
+
+        return option;
+    }
+</script>
+
+<style>
+    .dhlparcel-shippingoption-disabled + label {
+        text-decoration: line-through;
+    }
+</style>

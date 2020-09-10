@@ -1,0 +1,10 @@
+<?php /** @var DHLParcel_Shipping_Block_Adminhtml_Jsdata_Servicepoint_Locator $this */ ?>
+<script type="text/javascript">
+    // Default locator data
+    var DHLShipping_ServicePointAPIUrl = '<?php echo $this->getGatewayUrl(); ?>';
+    var DHLShipping_ServicePointMapsAPIKey = '<?php echo $this->getMapsKey(); ?>';
+    // Additional data
+    var DHLShipping_ServicePointSelectUrl = '<?php echo $this->getSelectUrl(); ?>';
+    var DHLShipping_ServicePointPostcode = '<?php echo str_replace(" ", "", $this->getPostcode()); ?>';
+    var DHLShipping_ServicePointCountryCode = '<?php echo $this->getCountryCode(); ?>';
+</script>

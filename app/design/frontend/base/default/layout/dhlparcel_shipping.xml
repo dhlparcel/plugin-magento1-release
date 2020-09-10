@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<layout>
+    <!-- DHL-update xml -->
+    <dhlparcel_shipping_checkout_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>dhlparcel/shipping/servicepoint/locator.css</name>
+            </action>
+            <action method="addLinkRel">
+                <rel>stylesheet</rel>
+                <href>https://servicepoint-locator.dhlparcel.nl/servicepoint-locator.css</href>
+            </action>
+            <action method="addItem" ifconfig="carriers/dhlparcel/load_jquery">
+                <type>js</type>
+                <name>dhlparcel/shipping/jquery/dhlparcel.jquery-1.12.0.min.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel/shipping/servicepoint/locator.js</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>dhlparcel/shipping/servicepoint/locator.js</name>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel/shipping/checkout.js</name>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="dhlparcel_shipping_modal" template="dhlparcel/shipping/modal.phtml">
+                <action method="setData">
+                    <name>title</name>
+                    <value>ServicePoint</value>
+                </action>
+                <block type="core/template" name="wrapper" template="dhlparcel/shipping/servicepoint/wrapper.phtml">
+                    <block type="core/template" name="container" template="dhlparcel/shipping/servicepoint/container.phtml" />
+                </block>
+            </block>
+            <block type="dhlparcel_shipping/jsdata_servicepoint_locator" name="dhlparcel_shipping_jsdata_servicepoint" template="dhlparcel/shipping/jsdata/servicepoint/locator.phtml" />
+            <block type="dhlparcel_shipping/jsdata_checkout" name="dhlparcel_shipping_jsdata_checkout" template="dhlparcel/shipping/jsdata/checkout.phtml" />
+        </reference>
+    </dhlparcel_shipping_checkout_index>
+    <!-- End DHL-update xml -->
+
+    <checkout_onepage_index>
+        <update handle="dhlparcel_shipping_checkout_index"/>
+    </checkout_onepage_index>
+
+    <!-- Mediameta QuickCheckout -->
+    <checkout_onestep_index>
+        <update handle="dhlparcel_shipping_checkout_index"/>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel/shipping/quickcheckout.js</name>
+            </action>
+        </reference>
+    </checkout_onestep_index>
+    <!-- End Mediameta QuickCheckout -->
+
+
+    <!-- OneStepCheckout -->
+    <onestepcheckout_index_index>
+        <update handle="dhlparcel_shipping_checkout_index"/>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel/shipping/onestepcheckout.js</name>
+            </action>
+        </reference>
+    </onestepcheckout_index_index>
+    <!-- End of OneStepCheckout -->
+
+
+    <!-- AheadWorks OneStepCheckout -->
+    <aw_onestepcheckout_index_index>
+        <update handle="dhlparcel_shipping_checkout_index"/>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel/shipping/aw_onestepcheckout.js</name>
+            </action>
+        </reference>
+    </aw_onestepcheckout_index_index>
+    <!-- End of AheadWorks OneStepCheckout -->
+
+    <checkout_cart_index>
+        <update handle="dhlparcel_shipping_checkout_index"/>
+    </checkout_cart_index>
+
+    <checkout_onepage_shippingmethod>
+        <reference name='root'>
+            <action method='setTemplate'><template>dhlparcel_shipping/checkout/available.phtml</template></action>
+        </reference>
+    </checkout_onepage_shippingmethod>
+</layout>

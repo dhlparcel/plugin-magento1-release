@@ -1,0 +1,200 @@
+.dhlparcel-shippingoption-disabled + label {
+    text-decoration: line-through;
+}
+
+#dhl_shipping_options {
+    width: calc(100% - 22px);
+    border: 1px SOLID #CCC;
+    margin: 20px;
+    background: #FFF;
+}
+
+#dhl_shipping_options h3 {
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(50%,#fc0),to(rgba(255,204,0,0)));
+    background-image: linear-gradient(#fc0 50%,rgba(255,204,0,0));
+    height: 45px;
+    line-height: 43px;
+    padding: 0 10px;
+    font-size: 14px;
+}
+#dhl_shipping_options h3 svg {
+    float: left;
+    margin: 16px -30px;
+    max-height: 10px;
+}
+
+.dhlparcel-shipping-content-box {
+    padding: 10px;
+}
+
+.dhlparcel-shipping-row {
+    overflow: hidden;
+    position: relative;
+}
+
+.dhlparcel-shipping-left {
+    width: 50%;
+    float: left;
+}
+
+.dhlparcel-shipping-left.dhlparcel-simple-col label {
+    padding-right: 20px;
+}
+.dhlparcel-shipping-right {
+    width: calc(50% - 1px);
+    float: right;
+    border-left: 1px SOLID #CCC;
+}
+.dhlparcel-shipping-right.dhlparcel-simple-col {
+    width: calc(50%);
+    border-left: none;
+    text-align: left;
+}
+
+.dhlparcel-shipping-right p {
+    line-height: 35px;
+    border-bottom: 1px SOLID #CCC;
+    text-align: left;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.dhlparcel-shipping-right p strong {
+    padding: 10px 10px 10px;
+    font-size: 13px;
+    line-height: 38px;
+}
+
+.dhlparcel-shipping-right p input[type="checkbox"] {
+    margin: 12px 10px 0;
+    float: left;
+}
+.dhlparcel-shipping-right p label {
+    font-size: 14px;
+    display: block;
+    float: left;
+}
+
+.dhlparcel-shipping-right p input[type="checkbox"]:checked + label {
+    text-shadow: 1px 0 0 black;
+}
+
+.dhlparcel-shipping-show-on-active {
+    display: none;
+}
+
+.dhlparcel-shipping-right p input[type="checkbox"] ~ span {
+    margin-left: 30px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    line-height: 1.6em;
+}
+
+.dhlparcel-shipping-right p input[type="checkbox"]:checked ~ input,
+.dhlparcel-shipping-right p input[type="checkbox"]:checked ~ span,
+.dhlparcel-shipping-right p input[type="checkbox"]:checked ~ strong {
+    display: inline-block !important;
+}
+
+.dhlparcel-shipping-right p.dhlparcel-shippingoption-disabled {
+    opacity: 0.5;
+}
+
+.dhlparcel-shipping-delivery-options {
+    text-align: left;
+}
+
+.dhlparcel-shipping-delivery-options li {
+    border-bottom: 1px SOLID #CCC;
+    padding: 10px;
+}
+
+.dhlparcel-shipping-delivery-options li.dhl-delivery-option-selected {
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(50%,#fc0),to(rgba(255,204,0,0)));
+    background-image: linear-gradient(#fc0 50%,rgba(255,204,0,0));
+    text-shadow: 1px 0 0 black;
+}
+
+.dhlparcel-shipping-row {
+    border-bottom: 1px SOLID #CCC;
+    padding: 20px 0;
+}
+
+.dhlparcel-shipping-ps-details {
+    text-align: left;
+    padding: 20px;
+}
+.dhlparcel-shipping-ps-details-address {
+    font-style: italic;
+}
+
+/* Business switch */
+.dhlparcel-shipping-business-switch-container {
+    width: 44%;
+    padding-left: 3%;
+}
+
+input#dhlparcel-shipping-business-switch {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+input#dhlparcel-shipping-business-switch ~ label {
+    float: left;
+}
+
+input#dhlparcel-shipping-business-switch ~ label {
+    display: inline-block;
+    width: 49%;
+    background-color: #e4e4e4;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: none;
+    padding: 3px 0;
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition:    all 0.1s ease-in-out;
+    -ms-transition:     all 0.1s ease-in-out;
+    -o-transition:      all 0.1s ease-in-out;
+    transition:         all 0.1s ease-in-out;
+}
+
+input#dhlparcel-shipping-business-switch ~ label:hover {
+    cursor: pointer;
+}
+
+input#dhlparcel-shipping-business-switch ~ label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+input#dhlparcel-shipping-business-switch ~ label:last-of-type {
+    border-radius: 0 4px 4px 0;
+}
+
+input#dhlparcel-shipping-business-switch:not(:checked) ~ label:first-of-type {
+    background-color: #fccc01;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+input#dhlparcel-shipping-business-switch:checked ~ label:last-of-type {
+    background-color: #fccc01;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.dhlparcel_hide_parcel_types {
+    display:none;
+}
+
+.dhlparcel_hide_parcel_types_message {
+    color: #D40611;
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!--
+  ~ Dhl Shipping
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to
+  ~ newer versions in the future.
+  ~
+  ~  PHP version 5.6+
+  ~
+  ~  @category  Dhlparcel
+  ~  @author    Shin Ho <plugins@dhl.com>
+  ~  @author    Rudger Gravenstein <plugins@dhl.com>
+  ~  @author    Ron Oerlemans <plugins@dhl.com>
+  ~  @copyright 2018 DHLParcel
+  ~  @link      https://www.dhlparcel.nl/
+  -->
+<layout>
+    <adminhtml_sales_order_shipment_new>
+        <reference name="head">
+            <action method="addLinkRel">
+                <rel>stylesheet</rel>
+                <href>https://servicepoint-locator.dhlparcel.nl/servicepoint-locator.css</href>
+            </action>
+            <action method="addCss">
+                <script>css/dhlparcel_shipping/sales_order_shipment_new.css</script>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>dhlparcel/shipping/servicepoint/locator.css</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>dhlparcel/shipping/jquery/dhlparcel.jquery-1.12.0.min.js</name>
+            </action>
+            <action method="addJs">
+                <script>lib/jquery/noconflict.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel_shipping/sales_order_shipment_new.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/dhlparcel/shipping/servicepoint/locator.js</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>dhlparcel/shipping/servicepoint/locator.js</name>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="dhlparcel_shipping/adminhtml_sales_order_shipment_create_dhlshipping" name="dhlparcel_shipping_order_create_shipment" template="dhlparcel/sales/order/shipment/create/dhl_shipping.phtml"/>
+            <!-- Shared (frontend) template -->
+            <block type="core/template" name="servicepointlocator_modal" template="dhlparcel/shipping/modal.phtml">
+                <action method="setData">
+                    <key>area</key>
+                    <value>frontend</value>
+                </action>
+                <action method="setData">
+                    <name>title</name>
+                    <value>ServicePoint</value>
+                </action>
+                <block type="core/template" name="wrapper" template="dhlparcel/shipping/servicepoint/wrapper.phtml">
+                    <action method="setData">
+                        <key>area</key>
+                        <value>frontend</value>
+                    </action>
+                    <block type="core/template" name="container" template="dhlparcel/shipping/servicepoint/container.phtml">
+                        <action method="setData">
+                            <key>area</key>
+                            <value>frontend</value>
+                        </action>
+                    </block>
+                </block>
+            </block>
+            <block type="dhlparcel_shipping/adminhtml_jsdata_servicepoint_locator" name="servicepointlocator_jsdata" template="dhlparcel/shipping/jsdata/servicepoint/locator.phtml"/>
+        </reference>
+    </adminhtml_sales_order_shipment_new>
+
+    <add_shipping_date_handle>
+        <reference name="sales_order.grid">
+            <action method="addColumnAfter">
+                <columnId>dhlparcel_shipping_date</columnId>
+                <arguments module="sales" translate="header">
+                    <header>Shipping Date</header>
+                    <index>dhlparcel_shipping_date</index>
+                    <type>options</type>
+                    <filter>DHLParcel_Shipping_Block_Widget_Grid_Column_Shippingdate</filter>
+                    <renderer>DHLParcel_Shipping_Block_Widget_Grid_Column_Renderer_Shippingdate</renderer>
+                    <width>159</width>
+                    <filter_condition_callback>DHLParcel_Shipping_Block_Widget_Grid_Column_Shippingdate::filterDate</filter_condition_callback>
+                </arguments>
+                <after>shipping_name</after>
+            </action>
+        </reference>
+    </add_shipping_date_handle>
+
+    <adminhtml_sales_order_grid>
+        <update handle="add_shipping_date_handle" />
+    </adminhtml_sales_order_grid>
+
+    <adminhtml_sales_order_index>
+        <update handle="add_shipping_date_handle" />
+    </adminhtml_sales_order_index>
+
+    <adminhtml_sales_order_view>
+        <reference name="head">
+            <action method="addCss">
+                <script>css/dhlparcel_shipping/sales_order_view.css</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="dhlparcel_shipping/adminhtml_sales_order_view_servicepoint" name="dhlparcel_shipping_servicepoint_info" template="dhlparcel/sales/order/view/servicepoint_address_info.phtml"/>
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>
