@@ -107,8 +107,7 @@ jQuery(document).ready(function($) {
                 $('<input>').attr({
                     type: 'hidden',
                     id: 'dhlparcel-servicepoint-select',
-                    name: 'dhlparcel-servicepoint-select',
-                    class: 'required-entry'
+                    name: 'dhlparcel-servicepoint-select'
                 }).appendTo('#onestepcheckout-form');
             }
 
@@ -159,8 +158,7 @@ jQuery(document).ready(function($) {
                 $('<input>').attr({
                     type: 'hidden',
                     id: 'dhlparcel-servicepoint-select',
-                    name: 'dhlparcel-servicepoint-select',
-                    class: 'required-entry'
+                    name: 'dhlparcel-servicepoint-select'
                 }).appendTo('.main_checkout');
             }
 
@@ -212,8 +210,7 @@ jQuery(document).ready(function($) {
                 $('<input>').attr({
                     type: 'hidden',
                     id: 'dhlparcel-servicepoint-select',
-                    name: 'dhlparcel-servicepoint-select',
-                    class: 'required-entry'
+                    name: 'dhlparcel-servicepoint-select'
                 }).appendTo('#aw-onestepcheckout-general-form');
             }
 
