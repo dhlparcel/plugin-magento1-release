@@ -254,12 +254,7 @@ class DHLParcel_Shipping_Model_Adminhtml_Observer extends Varien_Object
                     ])
                 ]);
             }
-        }
-        if ($block instanceof Mage_Adminhtml_Block_Widget_Grid_Massaction
-            && (
-                $block->getRequest()->getControllerName() == 'sales_order'
-                || $block->getRequest()->getControllerName() == 'sales_shipment'
-            )) {
+
             if (Mage::getStoreConfig('carriers/dhlparcel_direct_print/printer')) {
                 // Direct print
                 $block->addItem('dhlparcel_shipping_direct_print', [
