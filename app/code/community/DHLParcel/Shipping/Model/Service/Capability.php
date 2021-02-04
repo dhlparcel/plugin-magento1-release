@@ -43,6 +43,8 @@ class DHLParcel_Shipping_Model_Service_Capability
 
         if (is_array($requestOptions) && count($requestOptions)) {
             $capabilityCheck->option = implode(',', $requestOptions);
+        } else if (!empty($requestOptions) && is_string($requestOptions)) {
+            $capabilityCheck->option = $requestOptions;
         }
 
         return $capabilityCheck;
