@@ -4,22 +4,6 @@ jQuery(document).ready(function($) {
     var dhlparcel_parcelshop_selection_modal_loaded = false;
     var dhlparcel_parcelshop_selection_modal_connected = false;
 
-    var dhlparcelTranslations = function (i) {
-        var translations = {
-            'distance': 'Distance',
-            'search': 'Search',
-            'monday': 'Monday',
-            'tuesday': 'Tuesday',
-            'wednesday': 'Wednesday',
-            'thursday': 'Thursday',
-            'friday': 'Friday',
-            'saturday': 'Saturday',
-            'sunday': 'Sunday',
-            'parcelshop_search': 'Zoeken'
-        };
-        return translations[i.toLowerCase()];
-    };
-
     $(document.body).on('click', 'span.dhlparcel-modal-close', function (e) {
         e.preventDefault();
         $('div.dhlparcel-modal').hide();
@@ -47,43 +31,44 @@ jQuery(document).ready(function($) {
         window.dhlparcel_shipping_select_servicepoint = function(event)
         {
             event.additional_servicepoint_id = null;
-            if (typeof event.shopType !== 'undefined' && event.shopType === 'packStation' && event.address.countryCode === 'DE') {
-                var dhlparcel_additional_servicepoint_id = prompt("Add your 'postnumber' for delivery at a DHL Packstation:");
 
-                if (dhlparcel_additional_servicepoint_id != null && dhlparcel_additional_servicepoint_id != '') {
-                    $(document.body).trigger("dhlparcel:add_servicepoint_component_confirm_button");
-
-                    event.name = event.keyword + ' ' + event.id;
-                    event.additional_servicepoint_id = dhlparcel_additional_servicepoint_id;
-
-                    $(document.body).trigger("dhlparcel:servicepoint_selection_sync", [event]);
-                } else {
-                    $(document.body).trigger("dhlparcel:servicepoint_selection_sync", [event]);
-                    $(document.body).trigger('dhlparcel:hide_parcelshop_selection_modal');
-                }
-            } else {
-                $(document.body).trigger("dhlparcel:add_servicepoint_component_confirm_button");
-                $(document.body).trigger("dhlparcel:servicepoint_selection_sync", [event]);
-            }
+            $(document.body).trigger("dhlparcel:servicepoint_selection_sync", [event]);
         };
 
         // Disable getScript from adding a custom timestamp
         $.ajaxSetup({cache: true});
-        $.getScript("https://servicepoint-locator.dhlparcel.nl/servicepoint-locator.js").done(function() {
+        $.getScript("https://static.dhlparcel.nl/components/servicepoint-locator-component@latest/servicepoint-locator-component.js").done(function() {
+          // Load ServicePoint Locator
+            var options = {
+                language: DHLShipping_Language,
+                country: '',
+                header: true,
+                resizable: true,
+                onSelect: window.dhlparcel_shipping_select_servicepoint
+            };
+
+            if (typeof DHLShipping_ServicePointMapsAPIKey !== "undefined" && DHLShipping_ServicePointMapsAPIKey.length > 0) {
+                options.googleMapsApiKey = DHLShipping_ServicePointMapsAPIKey;
+            }
+
+            window.dhlparcel_shipping_servicepoint_locator = new dhl.servicepoint.Locator(document.getElementById("dhl-servicepoint-locator-component"), options);
+
             dhlparcel_parcelshop_selection_modal_loaded = true;
             dhlparcel_parcelshop_selection_modal_loading_busy = false;
+
             $(document.body).trigger("dhlparcel:connect_servicepoint_selection_modal");
         });
+
 
     }).on('dhlparcel:connect_servicepoint_selection_modal', function(e) {
         if (dhlparcel_parcelshop_selection_modal_connected === true) {
             return;
         }
+
         dhlparcel_parcelshop_selection_modal_connected = true;
 
         // Send an after connected event
         $(document.body).trigger("dhlparcel:servicepoint_set_triggers");
-
     }).on('dhlparcel:servicepoint_selection_sync', function(e, event) {
         // Dummy event (recommended to use a different handle for specific pages)
 
@@ -93,37 +78,13 @@ jQuery(document).ready(function($) {
             return;
         }
 
-        if (typeof  window.dhlparcel_shipping_reset_servicepoint === "function") {
-            var options = {
-                host: DHLShipping_ServicePointAPIUrl,
-                apiKey: DHLShipping_ServicePointMapsAPIKey,
-                query: hostElement.getAttribute('data-zip-code'),
-                countryCode: hostElement.getAttribute('data-country-code'),
-                limit: 7,
-                tr: dhlparcelTranslations
-            };
-
-            // Use the generated function provided by the component to load the ServicePoints
-            window.dhlparcel_shipping_reset_servicepoint(options);
-        } else {
-            console.log('An unexpected error occured. ServicePoint functions were not loaded.');
+        if (typeof window.dhlparcel_shipping_servicepoint_locator !== 'undefined') {
+            window.dhlparcel_shipping_servicepoint_locator.setCountry($('#dhl-servicepoint-locator-component').attr('data-country-code'))
+            window.dhlparcel_shipping_servicepoint_locator.setQuery($('#dhl-servicepoint-locator-component').attr('data-zip-code'))
         }
-
     }).on('dhlparcel:hide_parcelshop_selection_modal', function(e) {
         $('span.dhlparcel-modal-title').text('');
         $('div.dhlparcel-modal').hide();
-
-    }).on('dhlparcel:add_servicepoint_component_confirm_button', function() {
-        if ($('.dhl-parcelshop-locator .dhl-parcelshop-locator-desktop ul .dhlparcel-servicepoint-component-confirm-button').length === 0) {
-            $('.dhl-parcelshop-locator .dhl-parcelshop-locator-desktop ul').prepend(
-                '<li class="md-list-item">' +
-                '<div role="button" class="dhlparcel-servicepoint-component-confirm-button md-fake-btn md-pointer--hover md-fake-btn--no-outline md-list-tile md-list-tile--three-lines md-text" tabindex="0" aria-pressed="false">' +
-                'Select' +
-                '</div>' +
-                '</li>'
-            );
-        }
-
     }).on('click', '.dhlparcel-servicepoint-component-confirm-button', function(e) {
         e.preventDefault();
         $(document.body).trigger('dhlparcel:hide_servicepoint_selection_modal');

@@ -27,8 +27,9 @@ class DHLParcel_Shipping_Model_Service_ServicePoint
     public function search($country, $postalcode, $limit = 13)
     {
         $servicePointsResponse = $this->connector->get('parcel-shop-locations/' . $country, [
-            'limit'   => $limit,
-            'zipCode' => strtoupper($postalcode),
+            'limit'       => $limit,
+            'zipCode'     => strtoupper($postalcode),
+            'serviceType' => 'parcel-last-mile',
         ]);
 
         if (!$servicePointsResponse || !is_array($servicePointsResponse)) {

@@ -25,6 +25,7 @@ jQuery(document).ready(function($) {
             }
         });
 
+        $(document.body).trigger("dhlparcel:hide_parcelshop_selection_modal");
     });
 
 });

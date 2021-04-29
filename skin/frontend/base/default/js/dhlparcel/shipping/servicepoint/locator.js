@@ -95,7 +95,6 @@ jQuery(document).ready(function($) {
 
                 } else {
                     $(document.body).trigger("dhlparcel:hide_parcelshop_selection_modal");
-
                 }
             });
 
@@ -130,10 +129,9 @@ jQuery(document).ready(function($) {
                 );
                 $("label[for='s_method_dhlparcel_PS'] #dhlparcel_servicepoint_change_button").before('<div id="dhlparcel_servicepoint_name_info">&nbsp;</div>');
 
-
                 $(".dhlparcel_servicepoint_change").click(function() {
-                    $('#dhl-servicepoint-locator-component').attr('data-zip-code', dhlparcel_postalcode);
-                    $('#dhl-servicepoint-locator-component').attr('data-country-code', dhlparcel_country_code);
+                    $(hostElement).attr('data-zip-code', dhlparcel_postalcode);
+                    $(hostElement).attr('data-country-code', dhlparcel_country_code);
 
                     $(document.body).trigger("dhlparcel:show_parcelshop_selection_modal", [hostElement]);
                     $('div.dhlparcel-modal').show();
@@ -274,8 +272,9 @@ jQuery(document).ready(function($) {
 
         $.get(DHLShipping_ServicePointAPIUrl + '/parcel-shop-locations/' + event.countryCode, {
             'limit' : 13,
-            'zipCode': event.zipCode
-        }, function (data) {
+            'zipCode' : event.zipCode,
+            'serviceType' : 'parcel-last-mile'
+    }, function (data) {
             $.each(data, function (key, parcelShop) {
                 if (event.countryCode !== 'DE' || parcelShop.shopType !== 'packStation') {
                     DHLShipping_FetchedPs[event.zipCode] = parcelShop;
@@ -290,18 +289,21 @@ jQuery(document).ready(function($) {
 
         $('.dhlparcel_servicepoint_change > span > span').text(DHLShipping_Texts_ChangePs);
 
-        if (event.distance < 1000) {
-            var DistanceAsText = event.distance + 'M';
-        } else {
+        var DistanceAsText = '';
+        if (typeof event.distance !== 'undefined') {
+            if (event.distance < 1000) {
+                var DistanceAsText = event.distance + 'M';
+            } else {
 
-            var DistanceAsText = Math.round( event.distance/100) / 10 + 'KM';
+                var DistanceAsText = Math.round( event.distance/100) / 10 + 'KM';
+            }
         }
 
         if (typeof event.address.addition === 'undefined') {
             event.address.addition = '';
         }
 
-        $("label[for='s_method_dhlparcel_PS'] #dhlparcel_servicepoint_change_button").before('<div id="dhlparcel_servicepoint_name_info" title="' + event.name + ' | ' + event.address.street + ' ' + event.address.number + event.address.addition + ' | ' + event.address.postalCode + ' ' + event.address.city + '">' + event.name + ' | ' + DHLShipping_Texts_Distance + ': ' + DistanceAsText + '</div>');
+        $("label[for='s_method_dhlparcel_PS'] #dhlparcel_servicepoint_change_button").before('<div id="dhlparcel_servicepoint_name_info" title="' + event.name + ' | ' + event.address.street + ' ' + event.address.number + event.address.addition + ' | ' + event.address.postalCode + ' ' + event.address.city + '">' + event.name + ((DistanceAsText !== '') ? ' | ' + DHLShipping_Texts_Distance + ': ' + DistanceAsText : ' | ' + event.address.street + ' ' + event.address.number + ((typeof event.address.addition !== 'undefined') ? event.address.addition : '') + ' | ' + event.address.postalCode + ' ' + event.address.city) + '</div>');
 
         let servicePointId = event.id;
         if (event.additional_servicepoint_id != null && event.additional_servicepoint_id != '') {
@@ -310,9 +312,11 @@ jQuery(document).ready(function($) {
 
         $('#dhlparcel-servicepoint-select').val(servicePointId);
 
-        if (selectParcelShop === true) {
+        if (selectParcelShop !== false) {
             $('#s_method_dhlparcel_PS').click();
         }
+
+        $(document.body).trigger("dhlparcel:hide_parcelshop_selection_modal");
     });
 
 });

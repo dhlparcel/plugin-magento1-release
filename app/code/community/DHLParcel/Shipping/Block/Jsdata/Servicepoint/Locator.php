@@ -31,4 +31,15 @@ class DHLParcel_Shipping_Block_Jsdata_Servicepoint_Locator extends Mage_Core_Blo
         return Mage::getStoreConfig('carriers/PS_dhlparcel/google_maps_api_key');
     }
 
+    public function getLanguage()
+    {
+        $locale = Mage::app()->getLocale()->getLocaleCode();
+
+        if (empty($locale)) {
+            return 'en';
+        }
+
+        $localeParts = explode('_', $locale);
+        return strtolower($localeParts[0]);
+    }
 }

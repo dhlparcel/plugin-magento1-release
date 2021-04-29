@@ -198,3 +198,11 @@ input#dhlparcel-shipping-business-switch:checked ~ label:last-of-type {
 .dhlparcel_hide_parcel_types_message {
     color: #D40611;
 }
+
+#dhlparcel-servicepoint-locator-wrapper button.MuiButtonBase-root {
+    background: #FFF;
+}
+
+#dhlparcel-servicepoint-locator-wrapper button.MuiButton-containedPrimary {
+    background: #D40511;
+}

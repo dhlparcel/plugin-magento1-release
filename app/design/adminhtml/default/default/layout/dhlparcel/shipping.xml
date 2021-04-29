@@ -18,7 +18,7 @@
         <reference name="head">
             <action method="addLinkRel">
                 <rel>stylesheet</rel>
-                <href>https://servicepoint-locator.dhlparcel.nl/servicepoint-locator.css</href>
+                <href>https://static.dhlparcel.nl/fonts/Delivery.css</href>
             </action>
             <action method="addCss">
                 <script>css/dhlparcel_shipping/sales_order_shipment_new.css</script>

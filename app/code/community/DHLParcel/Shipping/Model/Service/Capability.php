@@ -59,7 +59,7 @@ class DHLParcel_Shipping_Model_Service_Capability
     protected function sendRequest($capabilityCheck)
     {
         $cacheKey = $this->cacheService->createKey('capabilities', $capabilityCheck->toArray(true));
-        $json = $this->cacheService->load($cacheKey);
+        $json = false;
 
         if ($json === false) {
             $response = $this->connector->get('capabilities/business', $capabilityCheck->toArray(true));

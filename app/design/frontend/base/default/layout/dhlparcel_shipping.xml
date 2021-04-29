@@ -9,7 +9,7 @@
             </action>
             <action method="addLinkRel">
                 <rel>stylesheet</rel>
-                <href>https://servicepoint-locator.dhlparcel.nl/servicepoint-locator.css</href>
+                <href>https://static.dhlparcel.nl/fonts/Delivery.css</href>
             </action>
             <action method="addItem" ifconfig="carriers/dhlparcel/load_jquery">
                 <type>js</type>
@@ -23,8 +23,6 @@
                 <type>js</type>
                 <name>dhlparcel/shipping/servicepoint/locator.js</name>
             </action>
-        </reference>
-        <reference name="head">
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/dhlparcel/shipping/checkout.js</name>

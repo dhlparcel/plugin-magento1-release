@@ -19,20 +19,23 @@
 @media screen and (max-width: 599px) {
     .dhlparcel-modal-content {
         width: 95vw;
-        margin: 15vh auto 0 auto;
+        height: 90vh;
+        margin: 5vh auto 0 auto;
     }
 }
 
 @media screen and (min-width: 600px) and (max-width: 1024px) {
     .dhlparcel-modal-content {
-        width: 80vw;
-        margin: 8vh auto 0 auto;
+        width: 95vw;
+        height: 90vh;
+        margin: 5vh auto 0 auto;
     }
 }
 
 @media screen and (min-width: 1025px) {
     .dhlparcel-modal-content {
-        width: 55vw;
+        width: 95vw;
+        height: 90vh;
         margin: 5vh auto 0 auto;
     }
 }
@@ -60,6 +63,8 @@
     font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.5;
+
+    position: relative;
 }
 
 .dhlparcel-modal-title {
@@ -73,9 +78,10 @@
 
 /* The Close Button */
 .dhlparcel-modal-close-wrapper {
-    text-align: right;
-    padding: 0 35px;
-    background-color: black;
+    position: absolute;
+    z-index: 999;
+    right: 20px;
+    top: 15px;
 }
 
 .dhlparcel-modal-close {
@@ -97,84 +103,80 @@
     cursor: pointer;
 }
 
-/* Reset table style */
-.dhlparcel-modal-content table,
-.dhlparcel-modal-content caption,
-.dhlparcel-modal-content tbody,
-.dhlparcel-modal-content tfoot,
-.dhlparcel-modal-content thead,
-.dhlparcel-modal-content tr,
-.dhlparcel-modal-content th,
-.dhlparcel-modal-content td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
+#dhlparcel-servicepoint-locator-wrapper {
+    height: 100%;
 }
-.dhlparcel-modal-content tr:nth-child(odd) td,
-.dhlparcel-modal-content tr:nth-child(even) td {
-    background: transparent;
+#dhl-servicepoint-locator-component {
+    all: initial;
+    display: block;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
 }
 
-/* Reset input styling */
-.dhlparcel-modal-content .input-text,
-.dhlparcel-modal-content input[type="email"],
-.dhlparcel-modal-content input[type="password"],
-.dhlparcel-modal-content input[type="search"],
-.dhlparcel-modal-content input[type="text"],
-.dhlparcel-modal-content input[type="url"],
-.dhlparcel-modal-content textarea {
+#dhl-servicepoint-locator-component *:focus {outline:none !important}
+
+#dhl-servicepoint-locator-component input[type='text'],
+#dhl-servicepoint-locator-component input[type='number'],
+#dhl-servicepoint-locator-component input[type='email'],
+#dhl-servicepoint-locator-component input[type='tel'],
+#dhl-servicepoint-locator-component input[type='url'],
+#dhl-servicepoint-locator-component input[type='password'],
+#dhl-servicepoint-locator-component input[type='search'],
+#dhl-servicepoint-locator-component textarea,
+#dhl-servicepoint-locator-component .input-text {
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 7px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    letter-spacing: inherit;
+    animation-duration: 10ms;
+    -webkit-tap-highlight-color: transparent;
     box-shadow: none;
 }
 
-.dhlparcel-modal-content .input-text:focus,
-.dhlparcel-modal-content input[type="email"]:focus,
-.dhlparcel-modal-content input[type="password"]:focus,
-.dhlparcel-modal-content input[type="search"]:focus,
-.dhlparcel-modal-content input[type="text"]:focus,
-.dhlparcel-modal-content input[type="url"]:focus,
-.dhlparcel-modal-content textarea:focus {
-    background-color: transparent;
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='text'],
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='number'],
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='email'],
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='tel'],
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='url'],
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='password'],
+#dhl-servicepoint-locator-component input.MuiOutlinedInput-input[type='search'],
+#dhl-servicepoint-locator-component textarea.MuiOutlinedInput-input,
+#dhl-servicepoint-locator-component .input-text.MuiOutlinedInput-input {
+    color: #333333;
+    padding: 28px 14px 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-family: Delivery Light;
+    font-weight: 400;
+    z-index: 9;
+    border: none;
 }
 
-.dhl-parcelshop-locator div.dhl-parcelshop-locator-desktop {
-    min-height: 60vh;
+#dhl-servicepoint-locator-component input[type='text']:focus,
+#dhl-servicepoint-locator-component input[type='number']:focus,
+#dhl-servicepoint-locator-component input[type='email']:focus,
+#dhl-servicepoint-locator-component input[type='tel']:focus,
+#dhl-servicepoint-locator-component input[type='url']:focus,
+#dhl-servicepoint-locator-component input[type='password']:focus,
+#dhl-servicepoint-locator-component input[type='search']:focus,
+#dhl-servicepoint-locator-component textarea:focus,
+#dhl-servicepoint-locator-component .input-text:focus {
+    background: transparent;
 }
 
-.dhl-parcelshop-locator div.dhlparcel-servicepoint-component-confirm-button {
-    box-shadow: 2px 2px 4px 2px rgba(0,0,0,0.2),2px 2px 2px  0 rgba(0,0,0,0.2);
-    height: auto;
-    margin: 0 5px 5px 5px;
-    cursor: pointer;
-    color: #ffffff;
-    background-color: #000000;
-
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
-}
-
-.dhl-parcelshop-locator div.dhlparcel-servicepoint-component-confirm-button:hover {
-    background-color: #fccc01;
-    color: #D40611;
-}
-
-@media screen and (min-width: 600px) and (max-width: 1024px) {
-    .dhl-parcelshop-locator div.md-text--theme-primary,
-    .dhl-parcelshop-locator div.md-text--theme-primary + div {
-        padding-left: 4px;
-        border-left: 6px #fccc01 solid;
-    }
-}
-
-@media screen and (min-width: 1025px) {
-    .dhl-parcelshop-locator div.md-text--theme-primary,
-    .dhl-parcelshop-locator div.md-text--theme-primary + div {
-        padding-left: 5px;
-        border-left: 10px #fccc01 solid;
-    }
+#dhlparcel_shipping_locator_real_reset form,
+#dhlparcel_shipping_locator_real_reset input[name="postNumber"],
+#dhlparcel_shipping_locator_real_reset fieldset:not(.MuiOutlinedInput-notchedOutline),
+#dhlparcel_shipping_locator_real_reset {
+    all: initial;
 }
