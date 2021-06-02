@@ -173,7 +173,6 @@ class DHLParcel_Shipping_Helper_Labels extends DHLParcel_Shipping_Helper_Data
             $shipmentOptions['PS'] = $order->getData('dhlparcel_servicepoint');
         }
 
-
         // Fill Packages Sizes
         $colliCount = 0;
         $pieces = array();
@@ -258,7 +257,7 @@ class DHLParcel_Shipping_Helper_Labels extends DHLParcel_Shipping_Helper_Data
                         'isBusiness' => $toBusiness !== null ? $toBusiness : boolval(Mage::getStoreConfig('carriers/dhlparcel/b2b')),
                         'addition' => $recipientAddress['addition'],
                     ],
-                    'email' => $shippingAddress->getEmail(),
+                    'email' => $shippingAddress->getEmail() ?: $order->getCustomerEmail(),
                     'phoneNumber' => $shippingAddress->getTelephone(),
                 ],
                 'shipper' => [
@@ -434,7 +433,7 @@ class DHLParcel_Shipping_Helper_Labels extends DHLParcel_Shipping_Helper_Data
                         'isBusiness' => $fromBusiness !== null ? $fromBusiness : boolval(Mage::getStoreConfig('carriers/dhlparcel/b2b')),
                         'addition' => $shipperAddress['addition'],
                     ],
-                    'email' => $shippingAddress->getEmail(),
+                    'email' => $shippingAddress->getEmail() ?: $order->getCustomerEmail(),
                     'phoneNumber' => $shippingAddress->getTelephone(),
                 ],
                 'returnLabel' => true,
